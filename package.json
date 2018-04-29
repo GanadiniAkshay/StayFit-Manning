@@ -4,7 +4,8 @@
   "description": "A health assistant chatbot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/babel src -d lib",
+    "start": "npm run build && node lib/index.js"
   },
   "author": "Akshay Kulkarni",
   "license": "MIT",
