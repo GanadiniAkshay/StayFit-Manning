@@ -22,37 +22,37 @@ bot.recognizer(new builder.LuisRecognizer(luisAppUrl));
 server.post("/api/messages", connector.listen())
 
 // Handle the Hi intent
-bot.dialog("Hi",function(session,args){
+bot.dialog("Hi",((session,args) => {
   session.send("Hey there");
 }).triggerAction({
   matches:"Hi"
-});
+}));
 
 // Handle the How intent
-bot.dialog("Get Nutrition",function(session,args){
+bot.dialog("Get Nutrition",((session,args) => {
   session.send("It’s very nutritious");
 }).triggerAction({
   matches:"Get Nutrition"
-});
+}));
 
 // Handle the Exercise intent
-bot.dialog("Get Workout Info",function(session,args){
+bot.dialog("Get Workout Info",((session,args) => {
   session.send("Follow the standard procedure");
 }).triggerAction({
   matches:"Get Workout Info"
-});
+}));
 
 // Handle the Thanks intent
-bot.dialog("Thanks",function(session,args){
+bot.dialog("Thanks",((session,args) => {
   session.send("You are welcome");
 }).triggerAction({
   matches:"Thanks"
-});
+}));
 
 // Handle the Goodbye intent
-bot.dialog("Bye",function(session,args){
+bot.dialog("Bye",((session,args)=>{
   session.send("Bye");
 }).triggerAction({
   matches:"Bye"
-});
+}));
 

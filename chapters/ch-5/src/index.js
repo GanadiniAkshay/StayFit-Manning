@@ -1,6 +1,6 @@
 import restify from "restify"
 import * as builder from "botbuilder"
-import azure from 'botbuilder-azure';
+
 // Setting up the server
 const server = restify.createServer()
 server.listen(3978, () => {
@@ -13,23 +13,10 @@ const connector = new builder.ChatConnector({
   appPassword: "",
 })
 
-var documentDbOptions = {
-    host: '<Azure-DocumentDB-URI>', 
-    masterKey: '<Azure-DocumentDB-Key>', 
-    database: 'healthassistdocs',   
-    collection: 'healthassistdata'		
-};
-
-var docDbClient = new azure.DocumentDbClient(documentDbOptions);
-var cosmosStorage = new azure.AzureBotStorage({gzip:false}, docDbClient);
-
-const bot = new builder.UniversalBot(connector).set('storage',cosmosStorage);
+const bot = new builder.UniversalBot(connector);
 
 var luisAppUrl = "https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/0906c5db-1a50-48cb-8988-676f354551d0?subscription-key=d3d4b77102dc4b07895c864325cb6820";
 bot.recognizer(new builder.LuisRecognizer(luisAppUrl));
-
-
-
 
 
 server.post("/api/messages", connector.listen())
